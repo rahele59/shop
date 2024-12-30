@@ -1,0 +1,61 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.python-version
+
+# Django Stuff
+*.log
+*.pot
+*.py[cod]
+db.sqlite3
+/media
+/staticfiles/
+.env
+*.env
+*.local
+
+# Virtual Environment
+venv/
+env/
+env.bak/
+.venv/
+.idea/
+.Python
+
+# Editor specific files
+.vscode/
+.idea/
+
+# Coverage
+.coverage
+coverage.xml
+htmlcov/
+.tox/
+
+# Other backups
+*~ 
+*#
+.\#*
+*.bak
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+.wheel/
+.mypy_cache/
+.pytest_cache/
+.pip-wheel-metadata/
+*.egg-info/
+.installed.cfg
+*.egg 
