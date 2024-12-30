@@ -1,3 +1,19 @@
+
 from django.db import models
 
-# Create your models here.
+
+class User(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    phone = models.CharField(max_length=18, unique=True)
+    user_name = models.CharField(max_length=100, unique=True)
+    profile_image = models.CharField(max_length=200)
+    date_joined = models. DateTimeField(auto_now_add=True, null=True)
+    data_updated = models. DateTimeField(auto_now=True, null=True)
+
+    # thumbnail set shavad badan
+    def __str__(self):
+        return self.email
+
+
+
