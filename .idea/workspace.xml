@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e7f1678-5bd1-48bd-9f23-8365896cc9b0" name="Changes" comment="add user models in myapp">
-      <change afterPath="$PROJECT_DIR$/user/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/constant.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/utils.py" afterDir="false" />
+    <list default="true" id="3e7f1678-5bd1-48bd-9f23-8365896cc9b0" name="Changes" comment="create model forgetpass&#10;send_email&#10;send_sms in utils folder&#10;forgetpass view created">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainshop1/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainshop1/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,7 +110,9 @@
       <updated>1735571197296</updated>
       <workItem from="1735571239509" duration="18732000" />
       <workItem from="1735624655244" duration="21835000" />
-      <workItem from="1735652484489" duration="1371000" />
+      <workItem from="1735652484489" duration="2127000" />
+      <workItem from="1735661616828" duration="9437000" />
+      <workItem from="1735714897579" duration="6430000" />
     </task>
     <task id="LOCAL‎−۰۰۰۰۱" summary="first commit add gitignore file and create app user">
       <option name="closed" value="true" />
@@ -136,7 +135,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۰۳" />
       <updated>1735587666342</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL‎−۰۰۰۰۴" summary="create model forgetpass&#10;send_email&#10;send_sms in utils folder&#10;forgetpass view created">
+      <option name="closed" value="true" />
+      <created>1735654291924</created>
+      <option name="number" value="LOCAL‎−۰۰۰۰۴" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۰۴" />
+      <updated>1735654291924</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,6 +152,7 @@
     <MESSAGE value="first commit add gitignore file and create app user" />
     <MESSAGE value="create app user" />
     <MESSAGE value="add user models in myapp" />
-    <option name="LAST_COMMIT_MESSAGE" value="add user models in myapp" />
+    <MESSAGE value="create model forgetpass&#10;send_email&#10;send_sms in utils folder&#10;forgetpass view created" />
+    <option name="LAST_COMMIT_MESSAGE" value="create model forgetpass&#10;send_email&#10;send_sms in utils folder&#10;forgetpass view created" />
   </component>
 </project>

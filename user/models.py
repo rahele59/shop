@@ -22,6 +22,7 @@ class ForgetPassword(models.Model):
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=18, null=True)
     code = models.CharField(max_length=10)
+    time_created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
         return self.email

@@ -1,8 +1,9 @@
 import random
-from datetime import datetime
+from datetime import datetime, timedelta
 import hashlib
 
 from django.contrib.auth import authenticate, login
+from django.db.models import Q
 from django.shortcuts import render
 from rest_framework.views import APIView
 from django.http import JsonResponse
@@ -106,5 +107,52 @@ class ForgetPass(APIView):
         else:
             return JsonResponse({'error': 'token not valid'}, status=400)
 
+
+class UpdatePass(APIView):
+    @staticmethod
+    def post(request):
+        data = request.data
+        phone = data['phone'] if 'phone' in data else ""
+        email = data['email'] if 'email' in data else ""
+        password = data['password']
+        code = data['code']
+        if data['token'] == TOKEN_USER:
+            current_time = datetime.now()
+            time_minus_2_minutes = current_time - timedelta(minutes=2)
+            fp_user = ForgetPassword.objects.filter((Q(phone=phone, code=code) | Q(email=email, code=code)) &
+                                                    Q(time_created__gt=time_minus_2_minutes))
+
+            if fp_user.exists():
+                fp_user.delete()
+                username = MyUser.objects.get(Q(phone=phone) | Q(email=email)).user_name
+                user = User.objects.get(username=username)
+                user.set_password(password)
+                user.save()
+                return JsonResponse({'status': 'پسورد شما با موفقیت تغییر کرد'}, status=200)
+            else:
+                return JsonResponse({'status': 'کد فعال سازی شما صحیح نیست یا زمان استفاده آن از دو دقیقه گذشته است'}, status=400)
+        else:
+            return JsonResponse({'error': 'token not valid'}, status=400)
+
+
+
 class UpdateProfile(APIView):
-    pass
+
+    @staticmethod
+    def post(request, ):
+        data = request.data
+        # ما در این قسمت با کلیدهای موجود اطلاعات کاربران را دریافت می کنیم
+        username = data['user_name']
+        name = data['name']
+        profile_image = data['profile_image']
+        token_login = data['token_login'] if 'token_login' in data else "fake"
+        token = data['token']
+        if token == TOKEN_USER:
+            user = MyUser.objects.filter(token=token_login)
+            if user.exists():
+                user.update(name=name, profile_image=profile_image, user_name=username)
+                return JsonResponse({'status': 'تغییرات با موفقیت اعمال شد'}, status=200)
+            else:
+                return JsonResponse({'error': 'خطا در اعتبارسنجی لطفا مجدد لاگین شوید'}, status=400)
+        else:
+            return JsonResponse({'error': 'token not valid'}, status=400)
