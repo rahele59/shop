@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e7f1678-5bd1-48bd-9f23-8365896cc9b0" name="Changes" comment="create model forgetpass&#10;send_email&#10;send_sms in utils folder&#10;forgetpass view created">
+    <list default="true" id="3e7f1678-5bd1-48bd-9f23-8365896cc9b0" name="Changes" comment="create update pass create update profile finish user api">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/constant.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/constant.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +113,23 @@
       <workItem from="1735624655244" duration="21835000" />
       <workItem from="1735652484489" duration="2127000" />
       <workItem from="1735661616828" duration="9437000" />
-      <workItem from="1735714897579" duration="6430000" />
+      <workItem from="1735714897579" duration="7230000" />
+      <workItem from="1735730479327" duration="2435000" />
+      <workItem from="1735752607912" duration="4797000" />
+      <workItem from="1735818649367" duration="93000" />
+      <workItem from="1735819232718" duration="1926000" />
+      <workItem from="1735827219833" duration="2995000" />
+      <workItem from="1735889544968" duration="1285000" />
+      <workItem from="1735916680385" duration="2107000" />
+      <workItem from="1735979457001" duration="4750000" />
+      <workItem from="1736012782699" duration="2234000" />
+      <workItem from="1736073469584" duration="4988000" />
+      <workItem from="1736084362239" duration="4540000" />
+      <workItem from="1736097049143" duration="815000" />
+      <workItem from="1736141387162" duration="613000" />
+      <workItem from="1736163445511" duration="3231000" />
+      <workItem from="1736176341290" duration="3624000" />
+      <workItem from="1736190478028" duration="4272000" />
     </task>
     <task id="LOCAL‎−۰۰۰۰۱" summary="first commit add gitignore file and create app user">
       <option name="closed" value="true" />
@@ -142,7 +159,21 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۰۴" />
       <updated>1735654291924</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL‎−۰۰۰۰۵" summary="create update pass create update profile finish user api">
+      <option name="closed" value="true" />
+      <created>1735721720485</created>
+      <option name="number" value="LOCAL‎−۰۰۰۰۵" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۰۵" />
+      <updated>1735721720485</updated>
+    </task>
+    <task id="LOCAL‎−۰۰۰۰۶" summary="create update pass create update profile finish user api">
+      <option name="closed" value="true" />
+      <created>1735730722921</created>
+      <option name="number" value="LOCAL‎−۰۰۰۰۶" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۰۶" />
+      <updated>1735730722921</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,6 +184,7 @@
     <MESSAGE value="create app user" />
     <MESSAGE value="add user models in myapp" />
     <MESSAGE value="create model forgetpass&#10;send_email&#10;send_sms in utils folder&#10;forgetpass view created" />
-    <option name="LAST_COMMIT_MESSAGE" value="create model forgetpass&#10;send_email&#10;send_sms in utils folder&#10;forgetpass view created" />
+    <MESSAGE value="create update pass create update profile finish user api" />
+    <option name="LAST_COMMIT_MESSAGE" value="create update pass create update profile finish user api" />
   </component>
 </project>

@@ -18,7 +18,7 @@ class User(models.Model):
 
 
 
-class ForgetPassword(models.Model):
+class VerifyPassword(models.Model):
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=18, null=True)
     code = models.CharField(max_length=10)

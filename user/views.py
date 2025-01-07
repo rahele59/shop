@@ -1,17 +1,16 @@
+import hashlib
 import random
 from datetime import datetime, timedelta
-import hashlib
 
-from django.contrib.auth import authenticate, login
-from django.db.models import Q
-from django.shortcuts import render
-from rest_framework.views import APIView
-from django.http import JsonResponse
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
+from django.db.models import Q
+from django.http import JsonResponse
+from rest_framework.views import APIView
 
-from utils.constant import TOKEN_USER, SUBJECT_FOR_FORGET_PASSWORD, KAVE_TEMPLATE
+from utils.constant import TOKEN_USER, SUBJECT_FOR_FORGET_PASSWORD, KAVE_TEMPLATE, SUBJECT_FOR_REGISTER
 from utils.utils import send_email, send_sms
-from .models import User as MyUser, ForgetPassword
+from .models import User as MyUser, VerifyPassword
 
 
 # Create your views here.
@@ -31,20 +30,32 @@ class Register(APIView):
         phone = data["phone"]
         name = data["name"]
         profile_image = data["profile_image"]
+        code = data['code']
         token = data["token"]
 
         if token == TOKEN_USER:
-            if User.objects.filter(username=username).exists():
-                return JsonResponse({'error': 'Username already exists'}, status=400)
-            elif User.objects.filter(email=email).exists():
-                return JsonResponse({'error': 'Email already exists'}, status=400)
-            elif MyUser.objects.filter(phone=phone).exists():
-                return JsonResponse({'error': 'Phone already exists'}, status=400)
-            else:
-                user = User.objects.create_user(username=username, password=password, email=email)
-                user2 = MyUser.objects.create(name=name, user_name=username, phone=phone, email=email,
+            #باید بررسی شوذ آیا کد صحیح است یا خیر؟
+            current_time = datetime.now()
+            time_minus_2_minutes = current_time - timedelta(minutes=2)
+            fp_user = VerifyPassword.objects.filter((Q(phone=phone, code=code) | Q(email=email, code=code)) &
+                                                    Q(time_created__gt=time_minus_2_minutes))
+
+            if fp_user.exists():
+                fp_user = fp_user.first()
+                fp_user.delete()
+                if User.objects.filter(username=username).exists():
+                    return JsonResponse({'error': 'Username already exists'}, status=400)
+                elif User.objects.filter(email=email).exists():
+                    return JsonResponse({'error': 'Email already exists'}, status=400)
+                elif MyUser.objects.filter(phone=phone).exists():
+                    return JsonResponse({'error': 'Phone already exists'}, status=400)
+                else:
+                    user = User.objects.create_user(username=username, password=password, email=email)
+                    user2 = MyUser.objects.create(name=name, user_name=username, phone=phone, email=email,
                                           profile_image=profile_image)
-                return JsonResponse({'status': 'کاربر با موفقیت اضافه شد'} ,status=201)
+                    return JsonResponse({'status': 'کاربر با موفقیت اضافه شد'} ,status=201)
+            else:
+                return JsonResponse({'error': 'code not valid'}, status=400)
         else:
             return JsonResponse({'error': 'token not valid'}, status=400)
 
@@ -66,7 +77,6 @@ class Login(APIView):
                 username = MyUser.objects.get(phone=phone).user_name
             else:
                 username = MyUser.objects.get(email=email).user_name
-
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 #login()
@@ -86,6 +96,37 @@ class Login(APIView):
         else:
             return JsonResponse({'error': 'token not valid'}, status=400)
 
+
+
+
+
+class RegisterVerify(APIView):
+
+    @staticmethod
+    def post(request):
+        data = request.data
+        if data['token'] == TOKEN_USER:
+            phone = data['phone'] if 'phone' in data else "nadarim"
+            email = data['email'] if 'email' in data else "nadarim"
+            random_code = random.randint(10000, 99999)
+
+            user = MyUser.objects.filter(Q(email=email) | Q(phone=phone))
+            if user.exists():
+                return JsonResponse({'error': 'ایمیل یا شماره ی شما قبلا ثبت شده است'}, status=400)
+
+            VerifyPassword.objects.create(phone=phone, email=email, code=random_code)
+            if phone != "":
+                #send sms
+                send_sms(to=phone,token=random_code,template=KAVE_TEMPLATE)
+                return JsonResponse({'status':"پیامک فعال سازی برای شما ارسال شد."}, status=200)
+            else:
+                # send_email
+
+                send_email(email, SUBJECT_FOR_REGISTER, f"کد فراموشی شما برابر است با{random_code}")
+                return JsonResponse({'status': "ایمیل فعال سازی برای شما ارسال شد"}, status=200)
+        else:
+            return JsonResponse({'error': 'token not valid'}, status=400)
+
 class ForgetPass(APIView):
 
     @staticmethod
@@ -95,10 +136,11 @@ class ForgetPass(APIView):
             phone = data['phone'] if 'phone' in data else ""
             email = data['email'] if 'email' in data else ""
             random_code = random.randint(10000, 99999)
-            fg_password = ForgetPassword.objects.create(phone=phone, email=email, code=random_code)
+            print(random_code)
+            fg_password = VerifyPassword.objects.create(phone=phone, email=email, code=random_code)
             if phone != "":
                 #send sms
-                send_sms(to=phone,token=random_code,template=KAVE_TEMPLATE)
+                send_sms(to=phone,token=random_code,token2="", template=KAVE_TEMPLATE)
                 return JsonResponse({'status':"پیامک فعال سازی برای شما ارسال شد."}, status=200)
             else:
                 # send_email
@@ -109,6 +151,7 @@ class ForgetPass(APIView):
 
 
 class UpdatePass(APIView):
+
     @staticmethod
     def post(request):
         data = request.data
@@ -119,7 +162,7 @@ class UpdatePass(APIView):
         if data['token'] == TOKEN_USER:
             current_time = datetime.now()
             time_minus_2_minutes = current_time - timedelta(minutes=2)
-            fp_user = ForgetPassword.objects.filter((Q(phone=phone, code=code) | Q(email=email, code=code)) &
+            fp_user = VerifyPassword.objects.filter((Q(phone=phone, code=code) | Q(email=email, code=code)) &
                                                     Q(time_created__gt=time_minus_2_minutes))
 
             if fp_user.exists():
