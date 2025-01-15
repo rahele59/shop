@@ -1,7 +1,7 @@
 import hashlib
 import random
-from datetime import datetime, timedelta
-
+from datetime import datetime, timedelta, timezone
+from django.utils import timezone
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.db.models import Q
@@ -35,25 +35,37 @@ class Register(APIView):
 
         if token == TOKEN_USER:
             #باید بررسی شوذ آیا کد صحیح است یا خیر؟
-            current_time = datetime.now()
+            current_time = timezone.now()
             time_minus_2_minutes = current_time - timedelta(minutes=2)
             fp_user = VerifyPassword.objects.filter((Q(phone=phone, code=code) | Q(email=email, code=code)) &
                                                     Q(time_created__gt=time_minus_2_minutes))
-
+            #اگر کاربر شمااره ندهد ارور دارد
             if fp_user.exists():
                 fp_user = fp_user.first()
                 fp_user.delete()
-                if User.objects.filter(username=username).exists():
+
+                mystring = username + str(datetime.now())
+                sha1_object = hashlib.sha1()
+                sha1_object.update(mystring.encode('utf-8'))
+                my_token = sha1_object.hexdigest()
+
+                if username != '' and User.objects.filter(username=username).exists():
                     return JsonResponse({'error': 'Username already exists'}, status=400)
-                elif User.objects.filter(email=email).exists():
+                elif email != "" and User.objects.filter(email=email).exists():
                     return JsonResponse({'error': 'Email already exists'}, status=400)
-                elif MyUser.objects.filter(phone=phone).exists():
+                elif phone != "" and MyUser.objects.filter(phone=phone).exists():
                     return JsonResponse({'error': 'Phone already exists'}, status=400)
                 else:
                     user = User.objects.create_user(username=username, password=password, email=email)
-                    user2 = MyUser.objects.create(name=name, user_name=username, phone=phone, email=email,
+                    if phone == '':
+                        phone = None
+                    if email == '':
+                        email = None
+                    user2 = MyUser.objects.create(name=name, user_name=username, email=email,
+                                          token=my_token, phone=phone,
                                           profile_image=profile_image)
-                    return JsonResponse({'status': 'کاربر با موفقیت اضافه شد'} ,status=201)
+                    return JsonResponse({'status': 'کاربر با موفقیت اضافه شد',
+                                    'token_login': my_token}, status=201)
             else:
                 return JsonResponse({'error': 'code not valid'}, status=400)
         else:
@@ -81,8 +93,9 @@ class Login(APIView):
             if user is not None:
                 #login()
                 user = MyUser.objects.get(user_name=username)
-                print(datetime.now())
-                mystring =username + str(datetime.now())
+                print(timezone.now())
+                mystring =username + str(timezone.now())
+
                 sha1_object = hashlib.sha1()
                 sha1_object.update(mystring.encode('utf-8'))
                 sha1_hash = sha1_object.hexdigest()
@@ -92,7 +105,7 @@ class Login(APIView):
                 return JsonResponse({'status': 'لاگین شدید!', 'token':sha1_hash}, status=200)
 
             else:
-                return JsonResponse({'status': 'چنین کاربری با این مشخصات وجود ندارد'}, status=400)
+                return JsonResponse({'error': 'چنین کاربری با این مشخصات وجود ندارد'}, status=400)
         else:
             return JsonResponse({'error': 'token not valid'}, status=400)
 
@@ -114,7 +127,7 @@ class RegisterVerify(APIView):
             if user.exists():
                 return JsonResponse({'error': 'ایمیل یا شماره ی شما قبلا ثبت شده است'}, status=400)
 
-            VerifyPassword.objects.create(phone=phone, email=email, code=random_code)
+            fg_password = VerifyPassword.objects.create(phone=phone, email=email, code=random_code)
             if phone != "":
                 #send sms
                 send_sms(to=phone,token=random_code,template=KAVE_TEMPLATE)
@@ -160,7 +173,7 @@ class UpdatePass(APIView):
         password = data['password']
         code = data['code']
         if data['token'] == TOKEN_USER:
-            current_time = datetime.now()
+            current_time = timezone.now()
             time_minus_2_minutes = current_time - timedelta(minutes=2)
             fp_user = VerifyPassword.objects.filter((Q(phone=phone, code=code) | Q(email=email, code=code)) &
                                                     Q(time_created__gt=time_minus_2_minutes))

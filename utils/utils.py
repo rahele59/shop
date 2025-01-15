@@ -3,7 +3,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from kavenegar import *
 
-from utils.constant import KAVE_API_KEY
+from utils.constant import *
 
 
 def send_email(to, subject, body):

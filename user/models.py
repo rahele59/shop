@@ -4,10 +4,10 @@ from django.db import models
 
 class User(models.Model):
     name = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    phone = models.CharField(max_length=18, unique=True)
-    user_name = models.CharField(max_length=100, unique=True)
-    profile_image = models.CharField(max_length=200)
+    email = models.EmailField(unique=True, null=True)
+    phone = models.CharField(max_length=18, unique=True, null=True)
+    user_name = models.CharField(max_length=100, unique=True, null=True)
+    profile_image = models.CharField(max_length=200, null=True)
     token = models.CharField(max_length=200, null=True)
     date_joined = models. DateTimeField(auto_now_add=True, null=True)
     data_updated = models. DateTimeField(auto_now=True, null=True)
