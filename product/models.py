@@ -13,8 +13,8 @@ class Category(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
-    rate = models.FloatField()
-    comment_count = models.IntegerField()
+    rate = models.FloatField(default=0)
+    comment_count = models.IntegerField(default=0)
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     price = models.IntegerField()
     final_price = models.IntegerField()
@@ -22,6 +22,7 @@ class Product(models.Model):
     is_banner = models.BooleanField(default=False)
     date = models.DateField(auto_now=True)
     date_modified = models.DateField(auto_now=True)
+    status = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
@@ -42,10 +43,10 @@ class ProductImage(models.Model):
 class ProductComment(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
-    comment = models.TextField()
-    date = models.DateField(auto_now=True)
+    comment = models.TextField(null=True)
+    date = models.DateTimeField(auto_now=True)
     rate = models.PositiveIntegerField(default=5)
-
+    status = models.BooleanField(default=True)
 
 
 

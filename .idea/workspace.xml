@@ -4,20 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e7f1678-5bd1-48bd-9f23-8365896cc9b0" name="Changes" comment="update model user&#10;verify password">
-      <change afterPath="$PROJECT_DIR$/product/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product/views.py" afterDir="false" />
+    <list default="true" id="3e7f1678-5bd1-48bd-9f23-8365896cc9b0" name="Changes" comment="create model product&#10;create first api for home">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainshop1/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainshop1/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainshop1/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainshop1/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/product/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/product/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/product/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +150,11 @@
       <workItem from="1736608775616" duration="3288000" />
       <workItem from="1736845714928" duration="9751000" />
       <workItem from="1736878371105" duration="6319000" />
-      <workItem from="1736927382898" duration="460000" />
+      <workItem from="1736927382898" duration="7463000" />
+      <workItem from="1737045613880" duration="9945000" />
+      <workItem from="1737105468304" duration="3342000" />
+      <workItem from="1737122074973" duration="2757000" />
+      <workItem from="1737125474151" duration="7299000" />
     </task>
     <task id="LOCAL‎−۰۰۰۰۱" summary="first commit add gitignore file and create app user">
       <option name="closed" value="true" />
@@ -210,7 +205,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۰۷" />
       <updated>1736225664158</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL‎−۰۰۰۰۸" summary="create model product&#10;create first api for home">
+      <option name="closed" value="true" />
+      <created>1736928130705</created>
+      <option name="number" value="LOCAL‎−۰۰۰۰۸" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۰۸" />
+      <updated>1736928130705</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,6 +225,18 @@
     <MESSAGE value="create model forgetpass&#10;send_email&#10;send_sms in utils folder&#10;forgetpass view created" />
     <MESSAGE value="create update pass create update profile finish user api" />
     <MESSAGE value="update model user&#10;verify password" />
-    <option name="LAST_COMMIT_MESSAGE" value="update model user&#10;verify password" />
+    <MESSAGE value="create model product&#10;create first api for home" />
+    <option name="LAST_COMMIT_MESSAGE" value="create model product&#10;create first api for home" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/user/views.py</url>
+          <line>115</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
