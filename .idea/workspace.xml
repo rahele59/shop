@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e7f1678-5bd1-48bd-9f23-8365896cc9b0" name="Changes" comment="create model product&#10;create first api for home">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/product/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/product/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/product/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="3e7f1678-5bd1-48bd-9f23-8365896cc9b0" name="Changes" comment="creat api for c&#10;comment&#10;add product&#10;delete product&#10;update product" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -154,7 +149,7 @@
       <workItem from="1737045613880" duration="9945000" />
       <workItem from="1737105468304" duration="3342000" />
       <workItem from="1737122074973" duration="2757000" />
-      <workItem from="1737125474151" duration="7299000" />
+      <workItem from="1737125474151" duration="7538000" />
     </task>
     <task id="LOCAL‎−۰۰۰۰۱" summary="first commit add gitignore file and create app user">
       <option name="closed" value="true" />
@@ -212,7 +207,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۰۸" />
       <updated>1736928130705</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL‎−۰۰۰۰۹" summary="creat api for c&#10;comment&#10;add product&#10;delete product&#10;update product">
+      <option name="closed" value="true" />
+      <created>1737139369810</created>
+      <option name="number" value="LOCAL‎−۰۰۰۰۹" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۰۹" />
+      <updated>1737139369810</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,7 +228,8 @@
     <MESSAGE value="create update pass create update profile finish user api" />
     <MESSAGE value="update model user&#10;verify password" />
     <MESSAGE value="create model product&#10;create first api for home" />
-    <option name="LAST_COMMIT_MESSAGE" value="create model product&#10;create first api for home" />
+    <MESSAGE value="creat api for c&#10;comment&#10;add product&#10;delete product&#10;update product" />
+    <option name="LAST_COMMIT_MESSAGE" value="creat api for c&#10;comment&#10;add product&#10;delete product&#10;update product" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
